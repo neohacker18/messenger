@@ -1,19 +1,22 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {getAuth} from 'firebase/auth'
+import {getFirestore} from 'firebase/firestore'
+import {getStorage} from 'firebase/storage'
 
 const firebaseConfig = {
   apiKey: "AIzaSyBBI-oXWPZn99uCek-FXrKYjbsQgnesoOY",
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_DATABASE_URL,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_APP_ID
+  authDomain: "messenger-2df57.firebaseapp.com",
+  databaseURL: "http://messenger-2df57.firebaseio.com",
+  projectId: "messenger-2df57",
+  storageBucket: "messenger-2df57.appspot.com",
+  messagingSenderId: "667316729882",
+  appId: "1:667316729882:web:2789d74e2eef4c2b5939a3"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth=getAuth(app)
-
-export {auth};
+const db=getFirestore(app)
+const storage=getStorage(app)
+export {auth,db,storage};

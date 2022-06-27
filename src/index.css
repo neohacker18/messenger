@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
-  background-color: #242526;
+  background-color: #0e0e0e;
 }
 
 code {
@@ -23,3 +23,50 @@ code {
   text-align: center;
   color:red
 }
+
+/* Profile */
+
+.profile_container{
+  display: flex;
+  align-items: center;
+}
+
+.img_container{
+  position: relative;
+  margin-right: 20px;
+}
+
+.img_container img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid rgb(34, 34, 34);
+  transition:0.5s ease-in-out all;
+}
+
+.img_container::hover img{
+  opacity: 0.8;
+}
+
+.image_container::hover .overlay{
+  opacity: 1;
+}
+
+.overlay{
+  transition: 0.5s ease;
+  opacity: 0.3;
+  position: absolute;
+  top: 58%;
+  left:51%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+
+.text_container{
+  flex-grow: 1;
+}
+
+.text_container h3{
+  text-align: left;
+}
+
