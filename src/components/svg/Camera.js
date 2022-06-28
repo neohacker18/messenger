@@ -4,7 +4,6 @@ const Camera = () => {
   return (
     <div>
       <svg 
-        class="w-6 h-6"
         style={{width: "25px", height: "25px", cursor: "pointer"}}
         fill="none"
         stroke="currentColor"
@@ -12,9 +11,9 @@ const Camera = () => {
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
           d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
         ></path>
         <path
