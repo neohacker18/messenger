@@ -215,3 +215,88 @@ code {
 .friend{
   background: rgb(38, 38, 45);
 }
+
+.custom-scrollbar-css {
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(54, 52, 52);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #778184;
+}
+
+.selected_user{
+  background: rgb(50, 50, 50);
+}
+
+.truncate{
+  font-size: 14px;
+  white-space: nowrap;
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.truncate strong{
+  margin-right: 10px;
+}
+
+.unread{
+  margin-left: 10px;
+  background: rgb(91, 91, 137);
+  color: white;
+  padding: 2px 4px;
+  border-radius: 10px;
+}
+.sm_screen{display: none;}
+
+@media screen and (max-width:767px)
+{
+  .home_container{
+  grid-template-columns:2fr 3fr;
+  }
+  .message_form{
+    left: 3%;
+    right: 0;
+  }
+  .message_wrapper{
+    max-width: 75%;
+  }
+}
+  
+
+@media screen and (max-width:576px)
+{
+  .home_container{
+  grid-template-columns:1fr 5fr;
+  }
+
+  .user_wrapper{
+    display: none;
+  }
+  .sm_container{
+    padding: 10px 0px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .sm_screen{
+    display: inline-block;
+  }
+  .message_form input{
+    width: 50vw;
+    margin: 0px 10px;
+  }
+  .message_form .btn{
+    margin-top: 0;
+  }
+  .message_wrapper{
+    max-width: 100%;
+  }
+}
+  

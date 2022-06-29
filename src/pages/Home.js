@@ -9,6 +9,10 @@ import {
   addDoc,
   Timestamp,
   orderBy,
+  setDoc,
+  doc,
+  getDoc,
+  updateDoc,
 } from "firebase/firestore";
 import User from "../components/User";
 import MessageForm from "../components/MessageForm";
@@ -41,7 +45,7 @@ const Home = () => {
     return () => unsub();
   }, []);
 
-  const selectUser = (user) => {
+  const selectUser = async(user) => {
     setChat(user);
     console.log(user);
 
@@ -58,6 +62,14 @@ const Home = () => {
       });
       setMsgs(msgs);
     });
+
+    //get last message b/w logged in and selected user
+    const docSnap=await getDoc(doc(db,'lastMsg',id))
+    //if last message exists and message is from selected user
+    if(docSnap.data() && docSnap.data()?.from!==user1)
+    {
+      await updateDoc(doc(db,'lastMsg',id),{unread:false})
+    }
   };
 
   console.log(msgs);
@@ -78,7 +90,7 @@ const Home = () => {
       url = dlurl;
       console.log(url);
     }
-    // cant use adddoc on document itself thats why we need a subcollection
+    // cant use adddoc on id itself thats why we need a subcollection
     await addDoc(collection(db, "messages", id, "chat"), {
       text,
       from: user1,
@@ -86,13 +98,29 @@ const Home = () => {
       createdAt: Timestamp.fromDate(new Date()),
       media: url || "",
     });
+    // last messages
+    await setDoc(doc(db, "lastMsg", id), {
+      text,
+      from: user1,
+      to: user2,
+      createdAt: Timestamp.fromDate(new Date()),
+      media: url || "",
+      unread: true,
+    });
+
     setText("");
   };
   return (
     <div className="home_container">
       <div className="users_container">
         {users.map((user) => (
-          <User key={user.uid} user={user} selectUser={selectUser} />
+          <User
+            key={user.uid}
+            user={user}
+            selectUser={selectUser}
+            user1={user1}
+            chat={chat}
+          />
         ))}
       </div>
       <div className="messages_container">
@@ -102,7 +130,11 @@ const Home = () => {
               <h3>{chat.name}</h3>
             </div>
             <div className="messages">
-              {msgs.length?msgs.map((msg,i)=><Message key={i} msg={msg} user1={user1}/>):null}
+              {msgs.length
+                ? msgs.map((msg, i) => (
+                    <Message key={i} msg={msg} user1={user1} />
+                  ))
+                : null}
             </div>
             <MessageForm
               handleSubmit={handleSubmit}
