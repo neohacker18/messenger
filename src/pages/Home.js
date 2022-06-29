@@ -25,7 +25,6 @@ const Home = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState("");
   const [msgs, setMsgs] = useState([]);
-
   const user1 = auth.currentUser.uid; //currently logged in user
 
   useEffect(() => {
